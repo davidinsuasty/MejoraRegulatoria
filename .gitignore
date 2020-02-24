@@ -1,0 +1,12 @@
+#ignore all temporal folders
+.vscode/
+__pycache__/
+
+#carpeta de documentacion
+docs/
+
+#ignore all compiled files of python 
+*.pyc
+
+#ignore draft scripts 
+prueba.*
