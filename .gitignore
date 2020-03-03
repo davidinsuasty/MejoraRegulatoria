@@ -4,6 +4,7 @@ __pycache__/
 
 #carpeta de documentacion
 docs/
+data/
 
 #ignore all compiled files of python 
 *.pyc
