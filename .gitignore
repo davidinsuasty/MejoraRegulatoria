@@ -1,13 +1,8 @@
-#ignore all temporal folders
-.vscode/
-__pycache__/
-
-#carpeta de documentacion
-docs/
-data/
-
 #ignore all compiled files of python 
 *.pyc
+__pycache__/
 
-#ignore draft scripts 
-prueba.*
+#ignore reports
+report_04-22-2020_2143_best.txt
+report_05-14-2020_1904_best_sectors.txt
+reporte_sectores.xlsx
