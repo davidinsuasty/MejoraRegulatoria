@@ -22,7 +22,7 @@ Para instalar las librerías necesarias para correr la herramienta
 
 ## Diccionario de archivos principales
 
-### 01_loadDB.py [](01_loadDB.py)
+###  [](01_loadDB.py)
 
 Script para cargar la base de datos de Mejora regulatoria desde 1991-2014 en formato txt (ver variable path) y la lista de documentos que se encuentra en el archivo csv (ver variable dicc). Este script carga los documentos y aplica un proceso de limpieza de texto
 
