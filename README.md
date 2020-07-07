@@ -8,7 +8,7 @@ Esta herramienta contiene los scripts para la clasificación de documentos de me
 2. Después de que un documento ha sido clasificado como sustancial, se clasifica en uno de los 9 sectores productivos (CIIU) o en un documento administrativo
 3. Se reporta la información en una tabla de Excel que contiene el nombre del documento y sus asignaciones a cada sector
 
-![Meto](assets\img\metodologia.png)
+![Meto](assets/img/metodologia.png)
 
 
 
@@ -22,7 +22,7 @@ Para instalar las librerías necesarias para correr la herramienta
 
 ## Diccionario de archivos principales
 
-[01_loadDB.py]: 01_loadDB.py	"01_loadDB.py"
+### 01_loadDB.py [](01_loadDB.py)
 
 Script para cargar la base de datos de Mejora regulatoria desde 1991-2014 en formato txt (ver variable path) y la lista de documentos que se encuentra en el archivo csv (ver variable dicc). Este script carga los documentos y aplica un proceso de limpieza de texto
 
