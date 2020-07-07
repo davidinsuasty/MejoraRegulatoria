@@ -77,6 +77,6 @@ Script donde se encuentran las funcionalidades para leer los archivos Word y dev
 
 ## Contacto
 
-[David Insuasti](malito:davidinsuasty@gmail.com)
+[David Insuasti](mailto:davidinsuasty@gmail.com?subject=[GitHub]%20Mejora%20Normativa)
 
-[Unidad de Cientificos de Datos](malito:ucd@dnp.gov.co)
+[Unidad de Cientificos de Datos](mailto:ucd@dnp.gov.co?subject=[GitHub]%20Mejora%20Normativa)
