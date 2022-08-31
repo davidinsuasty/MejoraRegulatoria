@@ -197,5 +197,3 @@ if __name__ == '__main__':
         saveReport(fr, name+ '_'+str(max_features), grid_search, ytest,y_pred,ts)
      
     fr.close()
-        
-        
