@@ -92,17 +92,3 @@ final.rename(columns={"type": "Nombre", "year": "Anio"}, inplace=True)
 final.sort_values(by=["Anio", "ids"], inplace=True)
 final.drop(columns=["ids"], inplace=True)
 final.to_csv(f"reporte_{anio}.csv", index=False, sep=";", encoding="utf-8")
-#%%
-
-# anio = str(2020)
-# width_cols = [14, 5, 38, 13, 10, 64, 12, 9]
-# writer = pd.ExcelWriter(
-#     anio + "_reporte_sectores_wordFiles.xlsx", engine="xlsxwriter"
-# )
-# final.to_excel(writer, sheet_name=anio, index=False)
-# worksheet = writer.sheets[anio]
-# for idx, col in enumerate(final):
-#     worksheet.set_column(idx, idx, width_cols[idx])
-# writer.save()
-
-# result.to_excel('2014_reporte_sectores_wordFiles.xlsx', index = False, header=True)
