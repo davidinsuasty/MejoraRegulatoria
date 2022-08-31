@@ -1,8 +1,13 @@
 #ignore all compiled files of python 
 *.pyc
 __pycache__/
+#ignore vs config
+.vscode/
 
 #ignore reports
-report_04-22-2020_2143_best.txt
-report_05-14-2020_1904_best_sectors.txt
-reporte_sectores.xlsx
+reportes/
+*.txt
+*.csv
+
+#Expections
+!requirements.txt
