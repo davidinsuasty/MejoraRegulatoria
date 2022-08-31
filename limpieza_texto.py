@@ -41,17 +41,28 @@ def remover_palabras_cortas(texto, n_min):
 
 # Limpieza básica del texto
 def limpieza_basica(texto, quitar_numeros=True):
+    """Limpieza básica del texto. Esta función realiza una limpieza básica del texto de entrada, \
+    transforma todo el texto a letras minúsculas, quita signos de puntuación y caracteres \
+    especiales, remueve espacios múltiples dejando solo espacio sencillo y caracteres \
+    de salto de línea o tabulaciones.
+
+    :param texto: (str) Texto de entrada al que se le aplicará la limpieza básica.
+    :param quitar_numeros: (bool) {True, False} Valor por defecto: True. \
+        Indica si desea quitar los números dentro del texto.
+    :return: (str) Texto después de la limpieza básica.
+    """
     # Texto a minúsculas
     texto = texto.lower()
     # Pone un espacio antes y después de cada signo de puntuación
     texto = re.sub(r"([\.\",\(\)!\?;:])", " \\1 ", texto)
     # Quita caracteres especiales del texto.
+    # RegEx adaptada de https://stackoverflow.com/a/56280214
     if quitar_numeros:
-        texto = re.sub(r"[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]"," ", texto)
+        texto = re.sub(r'[^ a-zA-ZÀ-ÖØ-öø-ÿ]+', ' ', texto)
     else:
-        texto = re.sub(r"[^a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]"," ", texto)
+        texto = re.sub(r'[^ a-zA-ZÀ-ÖØ-öø-ÿ0-9]+', ' ', texto)
     # Reemplaza espacios múltiples por un solo espacio
-    texto = re.sub(r" +"," ", texto)
+    texto = re.sub(r" +", " ", texto)
     # Quitar espacios, tabs y enters en los extremos del texto
     texto = texto.strip(' \t\n\r')
     return texto
@@ -92,25 +103,3 @@ def remover_frecuencia (texto, min_frecuencia_palabras=1):
     listaPalabras=texto.split()
     freq=Counter(listaPalabras)
     return (" ".join([ele for ele in listaPalabras if freq[ele] > min_frecuencia_palabras]))
-
-
-# %%
-# from collections import Counter 
-
-# def remover_frecuencia_list (texto, n_del=1):
-#     """ Función que remueve las palabras que aparecen el texto
-#     n veces o menos:
-
-#     :param list texto: Ingresar lista de textos
-
-#     :returns: Lista de textos sin palabras que aparecen n veces o menos
-#     :rtype: list
-#     """
-#     textos=[]
-#     for i in range(0, len(texto)):
-#         listaPalabras=texto[i].split()
-#         freq=Counter(listaPalabras)
-#         textos.append(" ".join([ele for ele in listaPalabras if freq[ele] > n_del]))
-#     return textos
-
-# # %%
