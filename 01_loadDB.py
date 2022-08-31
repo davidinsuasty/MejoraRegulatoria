@@ -5,13 +5,13 @@
 """
 # %% Cargar librerias necesarias
 import glob
-import pandas as pd
 from load_stopwords import load_stopwords
 from limpieza_texto import limpieza_texto, limpieza_basica
 from itertools import repeat
 import time
 import pickle
 import sys
+import parmap
 import re
 
 # %% util function
@@ -117,17 +117,6 @@ if __name__ == "__main__":
         "filepaths": filepaths,
     }
 
-    # ts = time.strftime("%m-%d-%Y_%H%M", time.localtime())
-    # pickle.dump(data, open(".\\data\\" + ts + "-91-2014-data_all.pkl", "wb"))
-
-    # #%% En esta parte se carga la estrutura de datos en data y se hace limpieza
-    # #   básica pa calcular las metricas de complejidad
-    # # data = pickle.load(
-    # #     open(".\\data\\02-25-2022_1900-91-2014-data_all.pkl", "rb")
-    # # )
-    # data = pickle.load(
-    #     open(".\\data\\02-25-2022_1900-91-2014-data_all.pkl", "rb")
-    # )
     texts2 = parmap.map(
         limpieza_basica, data["texto"], pm_parallel=True, pm_pbar=True
     )
