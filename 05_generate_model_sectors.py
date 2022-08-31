@@ -20,78 +20,60 @@ from sklearn.svm import SVC
 import time
 
 #%% main processs
-if __name__ == "__main__":
-    # Load data
-    print("loading data...")
-    data = pickle.load(open(".\\data\\06-04-2020_1854-data_all.pkl", "rb"))
+if __name__ == '__main__':
+    #Load data
+    print('loading data...')
+    data = pickle.load(open(".\\data\\06-04-2020_1854-data_all.pkl",'rb'))
     df = pd.DataFrame.from_dict(data)
     # solo tomar los sustanciales
-    df = df[df["Sustancial"] == 1]
-    # eliminar los nan de la base de datos
-    df.dropna(inplace=True)
-    # filtrar textos de longutud 0
-    df = df[df["data"].apply(len) > 0]
+    df = df[df['Sustancial'] == 1]
+    #eliminar los nan de la base de datos
+    df.dropna(inplace = True)
+    #filtrar textos de longutud 0
+    df = df[df['data'].apply(len)>0]
     # resumen de base de datos por etiqueta
-    print(df.groupby(["Sector"])["Sustancial"].count())
-
+    print(df.groupby(['Sector'])['Sustancial'].count())
+   
     #%% dividir la base de datos en train - test
-    X = list(df["data"])
-    y = list(df["Sector"].apply(int))
-    print("spliting data")
-    Xtrain, Xtest, ytrain, ytest = train_test_split(
-        X, y, test_size=0.15, stratify=y, random_state=10
-    )
-    print("Done! \n")
-
+    X = list(df['data'])
+    y = list(df['Sector'].apply(int))
+    print('spliting data')
+    Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, test_size = 0.15,
+                                                    stratify = y, random_state = 10)
+    print('Done! \n')
+    
     #%% Pipeline generation with the best combination of parameters
 
     # TFIDF parameters
-    ngram_range = (1, 2)
-    min_df = 20
-    max_df = 1.0
-    max_features = 500  # 500 -> 65.26
-
-    print("computing TF-IDF repreesentation...")
-    tfidf = TfidfVectorizer(
-        encoding="utf-8",
-        ngram_range=ngram_range,
-        stop_words=None,
-        lowercase=False,
-        max_df=max_df,
-        min_df=min_df,
-        max_features=max_features,
-        norm="l2",
-        sublinear_tf=True,
-    )
+    ngram_range = (1,2)
+    min_df = 23
+    max_df = 1.
+    max_features = 465
+    
+    print('computing TF-IDF repreesentation...')
+    tfidf = TfidfVectorizer(encoding='utf-8', ngram_range=ngram_range, stop_words=None, 
+                            lowercase = False, max_df=max_df, min_df=min_df,
+                            max_features=max_features, norm='l2', sublinear_tf=True)
 
     # Classifier parameters
-    C = 2.0
-    kernel = "rbf"
-    gamma = 0.5
-    class_weight = "balanced"
-    clf = SVC(
-        C=C,
-        gamma=gamma,
-        kernel=kernel,
-        probability=True,
-        class_weight=class_weight,
-        random_state=10,
-    )
+    C = 1.8
+    kernel = 'linear'
+    gamma = 'scale'
+    clf = SVC(C=C, gamma=gamma, kernel=kernel, probability = True,
+              class_weight= None, random_state=10)
 
     # generating pipeline
-    print("generating final model")
-    pipeline = Pipeline(steps=[("tfidf", tfidf), ("clf", clf)])
-    pipeline.fit(Xtrain, ytrain)
-    print("Done!")
+    print('generating final model')
+    pipeline = Pipeline(steps=[('tfidf',tfidf),('clf',clf)])
+    pipeline.fit(Xtrain,ytrain)
+    print('Done!')
 
-    ts = time.strftime("%m-%d-%Y_%H%M", time.localtime())
-    print("saving model...")
-    with open(
-        ".\\models\\_" + ts + "-final_model_sectors.pkl", "wb"
-    ) as output:
+    ts = time.strftime('%m-%d-%Y_%H%M', time.localtime())
+    print('saving model...')
+    with open('.\\models\\_'+ts+'-final_model_sectors.pkl', 'wb') as output:
         pickle.dump(pipeline, output)
 
-    print("Done!")
+    print('Done!')
 #%% show model performance
 from sklearn.metrics import classification_report, accuracy_score
 
@@ -100,8 +82,8 @@ y_pred = pipeline.predict(Xtest)
 print("The test accuracy is: ")
 print(accuracy_score(ytest, y_pred))
 
-# classification report
-print("")
+#classification report
+print('')
 print("Classification report")
 print(classification_report(ytest, y_pred))
 
@@ -126,3 +108,4 @@ print(classification_report(ytest, y_pred))
 # plt.title('Receiver operating characteristic example')
 # plt.legend(loc="lower right")
 # plt.show()
+
